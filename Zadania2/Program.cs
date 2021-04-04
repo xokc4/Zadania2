@@ -9,6 +9,23 @@ namespace Zadania2
 {
     class Program
     {
+        protected static int origRow;
+        protected static int origCol;
+
+        protected static void WriteAt(string s, int x, int y)
+        {
+            try
+            {
+                Console.SetCursorPosition(origCol + x, origRow + y);
+                Console.Write(s);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+        }
+       
         static void Main(string[] args)
         {
            
@@ -56,7 +73,7 @@ namespace Zadania2
             ///  по аналогу с первым студентом происходит ввод данных 2 и 3 студента 
             /// </summary>
 
-            //Ввод данных второго студента 
+            ////Ввод данных второго студента 
             Console.WriteLine("Введите имя второго студента");
             string Stud2Name = Console.ReadLine();
             Console.WriteLine("Введите возраст второго  студента ");
@@ -93,7 +110,7 @@ namespace Zadania2
             double Average2Score = (Stud2BallRuss + Stud2BallIstoria + Stud2BallMat) / 3;
 
 
-            //Ввод данных третьего студента 
+            //Ввод данных третьего студента
             Console.WriteLine("Введите имя третьего студента");
             string Stud3Name = Console.ReadLine();
             Console.WriteLine("Введите возраст третьего  студента ");
@@ -135,11 +152,13 @@ namespace Zadania2
 
 
             // обычный вывод
-            Console.WriteLine( "Имя:" + Stud1Name + " Возраст: " + Stud1Age + " Рост: " + Stud1Growth + " Средний балл оценок: " + Average1Score);
-            //Форматирования строк, также тут происходит изменения среднего балла до двух цифр после запятой  
-            Console.WriteLine("Имя: {0}  Возраст: {1} Рост: {2} Средний балл оценок: {3: 0.00} ", Stud2Name, Stud2Age, Stud2Growth, Average2Score);
+            WriteAt( "Имя:" + Stud1Name + " Возраст: " + Stud1Age + " Рост: " + Stud1Growth + " Средний балл оценок: " + Average1Score , 80, 30);
+            //Форматирования строк, также тут происходит изменения среднего балла до двух цифр после запятой
+            Console.Write("Имя: {0}  Возраст: {1} Рост: {2} Средний балл оценок: {3: 0.00} ", Stud2Name, Stud2Age, Stud2Growth, Average2Score);
             //интерполяция строк
-            Console.WriteLine($"Имя:{Stud3Name} Возраст: {Stud3Age} Рост: {Stud3Growth} Средний балл оценок: {Average3Score}");
+            WriteAt($"Имя:{Stud3Name} Возраст: {Stud3Age} Рост: {Stud3Growth} Средний балл оценок: {Average3Score}", 80, 32);
+
+            Console.WriteLine();
 
             Console.ReadKey();
            
